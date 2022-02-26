@@ -11,7 +11,7 @@ const runExperiment = (experiment) => {
     crossValidate.train(data, trainConfig, kFolds);
     experimentResult.model = crossValidate.toJSON();
 
-    fs.writeFileSync(`./experiments/${startDate.toISOString()}.json`, JSON.stringify(experimentResult));
+    fs.writeFileSync(`./experiments/${startDate.toISOString()}-${name}.json`, JSON.stringify(experimentResult));
     console.log(`Done to run: ${name}`);
 };
 
