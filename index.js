@@ -1,7 +1,7 @@
+const runExperiment = require('./runExperiment');
 const experiment = {
-    id: 1,
     name: 'First Test',
-    dataset: 'diabetes.json',
+    dataset: 'datasets/standerdized/diabetes.json',
     type: 'NeuralNetwork',
     networkConfig: {
         // activation: 'sigmoid',
@@ -18,6 +18,11 @@ const experiment = {
         // callback: null, // a periodic call back that can be triggered while training --> null or function
         // callbackPeriod: 10, // the number of iterations through the training data between callback calls --> number greater than 0
         // timeout: Infinity, // the max number of milliseconds to train for --> number greater than 0
+        log: (details) => console.log(details),
     },
     kFolds: 4,
 };
+
+for (const type of ['NeuralNetwork', 'LSTMTimeStep', 'RNNTimeStep', 'GRUTimeStep']) {
+    runExperiment({ ...experiment, name: type, type });
+}
