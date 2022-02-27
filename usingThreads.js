@@ -13,9 +13,9 @@ const run = async () => {
         const runExperiment = require('./runExperiment');
         process.on('message', (type) => {
             const experiment = {
-                name: 'First Test',
+                name: `Default ${type} for diabetes`,
                 dataset: 'datasets/standerdized/diabetes.json',
-                type: 'NeuralNetwork',
+                type,
                 networkConfig: {
                     // activation: 'sigmoid',
                     // hiddenLayers: [4],
@@ -36,7 +36,7 @@ const run = async () => {
                 kFolds: 4,
             };
 
-            runExperiment({ ...experiment, name: type, type });
+            runExperiment(experiment);
         });
     }
 };
