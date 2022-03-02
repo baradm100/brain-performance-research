@@ -13,8 +13,8 @@ const run = async () => {
         const runExperiment = require('./runExperiment');
         process.on('message', (type) => {
             const experiment = {
-                name: `Default ${type} for diabetes`,
-                dataset: 'datasets/standerdized/diabetes.json',
+                name: `Default ${type} for diabetesNoFunnction`,
+                dataset: 'datasets/standerdized/diabetesNoFunnction.json',
                 type,
                 networkConfig: {
                     // activation: 'sigmoid',

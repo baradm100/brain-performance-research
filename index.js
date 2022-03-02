@@ -1,7 +1,7 @@
 const runExperiment = require('./runExperiment');
 const experiment = {
     name: 'First Test',
-    dataset: 'datasets/standerdized/diabetes.json',
+    dataset: 'datasets/standerdized/diabetesNoFunnction.json',
     type: 'NeuralNetwork',
     networkConfig: {
         // activation: 'sigmoid',
@@ -24,5 +24,5 @@ const experiment = {
 };
 
 for (const type of ['NeuralNetwork', 'LSTMTimeStep', 'RNNTimeStep', 'GRUTimeStep']) {
-    runExperiment({ ...experiment, name: type, type });
+    runExperiment({ ...experiment, name: `diabetesNoFunnction ${type}`, type });
 }
