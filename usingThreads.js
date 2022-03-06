@@ -13,8 +13,8 @@ const run = async () => {
         const runExperiment = require('./runExperiment');
         process.on('message', (type) => {
             const experiment = {
-                name: `Default ${type} for diabetesNoFunnction`,
-                dataset: 'datasets/standerdized/diabetesNoFunnction.json',
+                name: `Default ${type} for diabetes.json - low number of iterations`,
+                dataset: 'datasets/standerdized/diabetes.json',
                 type,
                 networkConfig: {
                     // activation: 'sigmoid',
@@ -22,7 +22,7 @@ const run = async () => {
                 },
                 trainConfig: {
                     // Defaults values --> expected validation
-                    // iterations: 20000, // the maximum times to iterate the training data --> number greater than 0
+                    iterations: 5000, // the maximum times to iterate the training data --> number greater than 0
                     // errorThresh: 0.005, // the acceptable error percentage from training data --> number between 0 and 1
                     // log: false, // true to use console.log, when a function is supplied it is used --> Either true or a function
                     // logPeriod: 10, // iterations between logging out --> number greater than 0
