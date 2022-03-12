@@ -9,9 +9,10 @@ const runExperiment = (experiment) => {
     const experimentResult = { ...experiment, startDate };
     const data = JSON.parse(fs.readFileSync(dataset));
     const crossValidate = new brain.CrossValidate(getNetwork(experiment));
-    crossValidate.train(data, trainConfig, kFolds);
+    const stats = crossValidate.train(data, trainConfig, kFolds);
     experimentResult.trainTime = new Date() - startDate;
     experimentResult.model = crossValidate.toJSON();
+    experimentResult.stats = stats;
 
     const net = crossValidate.toNeuralNetwork();
     let wrong = 0;

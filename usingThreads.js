@@ -1,9 +1,7 @@
-const sleep = () => new Promise((res) => setTimeout(() => res(), 1000));
 const cluster = require('cluster');
 
 const run = async () => {
-    let i = 0;
-    const types = ['NeuralNetwork', 'LSTMTimeStep', 'RNNTimeStep', 'GRUTimeStep'];
+    const types = ['NeuralNetwork', 'RNNTimeStep'];
     if (cluster.isPrimary) {
         for (const type of types) {
             const worker = cluster.fork();
