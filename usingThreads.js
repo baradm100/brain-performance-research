@@ -3,9 +3,18 @@ const cluster = require('cluster');
 const run = async () => {
     const types = ['NeuralNetwork', 'RNNTimeStep'];
     if (cluster.isPrimary) {
+        let numOfExitedWorkers = 0;
         for (const type of types) {
             const worker = cluster.fork();
             worker.send(type);
+            worker.on('exit', () => {
+                numOfExitedWorkers++;
+
+                if (numOfExitedWorkers === types.length) {
+                    console.log('All jobs are done! Closing...');
+                    process.exit(0);
+                }
+            });
         }
     } else {
         const runExperiment = require('./runExperiment');
@@ -35,6 +44,7 @@ const run = async () => {
             };
 
             runExperiment(experiment);
+            process.exit(0);
         });
     }
 };
